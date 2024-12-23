@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Long, Student> {
+public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    Student findByFirstName(String firstName);
+    @Query(value = "SELECT s FROM Student s WHERE s.firstName=:firstName")
+    Optional<Student> findByFirstName(String firstName);
 
 
     @Query("select s from Student s where s.firstName like ?1%")

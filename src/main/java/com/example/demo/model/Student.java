@@ -5,13 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 public class Student {
 
     @Id
@@ -21,9 +19,23 @@ public class Student {
     private String firstName;
     private String lastName;
 
+    public Student() {
+    }
 
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
