@@ -82,10 +82,10 @@ class ProductServiceImplTest {
 
         ArgumentCaptor<Product> argumentCaptor = ArgumentCaptor.forClass(Product.class);
 
-        when(productRepository.add(carrot)).thenReturn(carrot);
+        when(productRepository.save(carrot)).thenReturn(carrot);
         Product addedProduct = productService.addProduct(carrot);
 
-        verify(productRepository).add(argumentCaptor.capture());
+        verify(productRepository).save(argumentCaptor.capture());
         Product productToVerify = argumentCaptor.getValue();
 
         assertThat(productToVerify).isEqualTo(carrot);
