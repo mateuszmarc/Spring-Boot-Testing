@@ -18,5 +18,5 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where s.firstName like ?1%")
     List<Student> findBySome(String some);
 
-    Student create(Student student);
+    Student save(Student student);
 }

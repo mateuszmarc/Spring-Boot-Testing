@@ -72,11 +72,11 @@ class StudentServiceImplTest {
     void addStudent() {
 
         Student student = new Student("Mateusz", "Marcykiewicz");
-        when(studentRepository.create(student)).thenReturn(student);
+        when(studentRepository.save(student)).thenReturn(student);
 
         Student createdStudent = studentService.addStudent(student);
 
-        verify(studentRepository).create(student);
+        verify(studentRepository).save(student);
 
         assertThat(createdStudent).isEqualTo(student);
 
