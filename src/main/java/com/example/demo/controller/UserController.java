@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.User;
 import com.example.demo.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -16,7 +18,20 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public String getUserName(@PathVariable String userId) {
-        return userService.getUserName(userId);
+    public User getUserName(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User createNewUser(@RequestBody User user) {
+        User created = userService.createUser(user);
+        System.out.println("Created User: " + created); // Debugging log
+        return created;
     }
 }
